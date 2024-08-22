@@ -1,5 +1,6 @@
 'use client'
 import Card from "./components/Card/Card";
+import Form from "./components/form/Form";
 import Navbar from "./components/Navbar/Navbar";
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
       <Navbar />
       <main className="flex h-[88vh] flex-col items-center justify-center">
         <Card>
-          <h1>HOME</h1>
+          <Form />
         </Card>
       </main>
     </>

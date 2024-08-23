@@ -1,8 +1,12 @@
-import { redirect } from "react-router-dom"
+'use server'
+
+import { redirect } from "next/navigation"
 import db from "../../../lib/db"
-import { UserForm } from "../components/form/Form"
+import { UserForm } from "./form/Form"
+
 
 export default async function handleRegister(data: UserForm) {
+    console.log(data)
     if (!data.email || !data.password) throw new Error('Os campos devem ser preenchidos')
 
     const user = await db.user.findUnique({

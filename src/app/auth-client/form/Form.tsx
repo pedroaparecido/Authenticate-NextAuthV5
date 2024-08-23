@@ -16,8 +16,8 @@ export default function Form() {
 
     return(
         <form onSubmit={handleSubmit(handleAuth)} className="flex flex-col items-center justify-center gap-2">
-            <input className="p-[10px] outline-none rounded-xl text-black" type="email" />
-            <input className="p-[10px] outline-none rounded-xl text-black" type="text" />
+            <input className="p-[10px] outline-none rounded-xl text-black" type="email" {...register('email')} />
+            <input className="p-[10px] outline-none rounded-xl text-black" type="text" {...register('password')} />
             <button className="p-[20px] bg-white text-black rounded-2xl mt-[10px] w-[230px]">Entrar</button>
         </form>
     )

@@ -39,8 +39,9 @@ export const {
 
                 if (!user) return null
 
-                const comparePass = compareSync(password, user.password)
-
+                const comparePass = compareSync(password, user.password as string)
+console.log(password)
+console.log(user.password)
                 if (comparePass) return { id: user.id, email: user.email, user: user.name }
 
                 return null

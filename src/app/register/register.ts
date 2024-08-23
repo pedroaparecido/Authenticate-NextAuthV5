@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation"
 import db from "../../../lib/db"
 import { UserForm } from "./form/Form"
+import { hashSync } from "bcrypt-ts"
 
 
 export default async function handleRegister(data: UserForm) {
@@ -17,10 +18,12 @@ export default async function handleRegister(data: UserForm) {
 
     if (user) throw new Error('Esse usuário já existe')
     
+    const hash = hashSync(data.password)
+
     await db.user.create({
         data: {
             email: data.email,
-            password: data.password,
+            password: hash,
         }
     })
 

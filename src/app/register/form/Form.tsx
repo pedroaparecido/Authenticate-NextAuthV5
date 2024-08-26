@@ -11,7 +11,7 @@ export interface UserForm {
 export default function Form() {
     const { handleSubmit, register } = useForm()
     
-    const handleAuth = async (data: FieldValues) => {
+    const handleAuth = async (data: UserForm) => {
         handleRegister(data)
     }
 

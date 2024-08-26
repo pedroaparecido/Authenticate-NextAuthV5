@@ -27,5 +27,5 @@ export default async function handleRegister(data: UserForm) {
         }
     })
 
-    redirect('/')
+    redirect('/auth-client')
 }

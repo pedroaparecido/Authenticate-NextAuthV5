@@ -10,7 +10,7 @@ export default async function handleLoginServer(data: UserForm) {
     const password = data.password
     try {
         await signIn('credentials', { email, password })
-        redirect('/')
+        redirect('/logout')
     } catch (err) {
         if (err instanceof AuthError) {
             if (err.type === 'CredentialsSignin') {

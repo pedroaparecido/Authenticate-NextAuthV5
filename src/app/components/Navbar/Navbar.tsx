@@ -10,6 +10,7 @@ export default function Navbar() {
                 <Link href="/auth-client">Auth (Client)</Link>
                 <Link href="/auth-server">Auth (Server)</Link>
                 <Link href="/register">Register</Link>
+                <Link href="/logout">Logout</Link>
             </div>
         </div>
     )

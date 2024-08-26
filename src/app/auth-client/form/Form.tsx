@@ -16,7 +16,7 @@ export default function Form() {
         try {
             const email = data.email
             const password = data.password
-            signIn('credentials', { email, password, redirect: true, callbackUrl: '/' })
+            signIn('credentials', { email, password, redirect: true, callbackUrl: '/logout' })
         } catch (err) {
             if (err instanceof AuthError) {
                 if (err.type === 'CredentialsSignin') {

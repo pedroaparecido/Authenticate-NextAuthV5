@@ -8,7 +8,7 @@ import { redirect } from "next/navigation"
 
 export default function Register() {
     const session = useSession()
-    if (session) redirect('/logout')
+    if (session.status === 'authenticated') redirect('/logout')
     
     return(
         <>

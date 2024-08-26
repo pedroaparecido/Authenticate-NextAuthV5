@@ -3,11 +3,12 @@ import { useSession } from "next-auth/react";
 import Card from "../components/Card/Card";
 import Navbar from "../components/Navbar/Navbar";
 import { redirect } from "next/navigation";
+import handleLogout from "./logout";
 
 export default function HomePage() {
     const session = useSession()
     
-    if (!session) redirect('/')
+    if (session.status === 'unauthenticated') redirect('/')
 
   return (
     <>
@@ -16,7 +17,9 @@ export default function HomePage() {
         {
           session && <span>Olá {session.data?.user?.email}</span>
         }
-        <button className="p-[20px] bg-stone-400 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl">Sair</button>
+        <form action={handleLogout}>
+          <button className="p-[20px] bg-stone-400 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl">Sair</button>
+        </form>
       </main>
     </>
   );

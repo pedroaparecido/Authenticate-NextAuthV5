@@ -8,11 +8,8 @@ import { redirect } from "next/navigation"
 
 export default function AuthClient() {
     const session = useSession()
-    if(!session) {
-        redirect('/')
-    } else {
-        redirect('/logout')
-    }
+
+    if(session.status === 'authenticated') redirect('/logout')
 
     return(
         <>

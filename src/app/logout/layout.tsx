@@ -1,4 +1,3 @@
-'use client'
 import { Inter } from "next/font/google";
 import { MemoryRouter } from "react-router-dom";
 import { SessionProvider } from "next-auth/react";
@@ -11,6 +10,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  'use server'
   const session = await auth()
 
   return (

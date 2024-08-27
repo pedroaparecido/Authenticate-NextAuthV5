@@ -8,7 +8,7 @@ import handleLogout from "./logout";
 export default function HomePage() {
     const session = useSession()
     
-    if (session.status === 'unauthenticated') redirect('/')
+    if (session.status === 'unauthenticated') redirect('/register')
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function HomePage() {
           session && <span>Olá {session.data?.user?.email}</span>
         }
         <form action={handleLogout}>
-          <button className="p-[20px] bg-stone-400 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl">Sair</button>
+          <button className="p-[20px] bg-stone-400 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl hover:bg-slate-600">Sair</button>
         </form>
       </main>
     </>

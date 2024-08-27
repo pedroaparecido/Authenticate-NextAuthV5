@@ -9,7 +9,7 @@ import { redirect } from "next/navigation"
 
 export default function AuthServer() {
     const session = useSession()
-    if (session.status === 'authenticated') redirect('/')
+    if (session.status === 'authenticated') redirect('/logout')
     
     return(
         <>

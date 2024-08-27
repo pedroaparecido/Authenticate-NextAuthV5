@@ -10,7 +10,7 @@ export interface UserForm {
 }
 
 export default function Form() {
-    const { handleSubmit, register } = useForm()
+    const { handleSubmit, register } = useForm<UserForm>()
     
     const handleAuth = async (data: UserForm) => {
         try {

@@ -1,11 +1,12 @@
 'use server'
-
-import { signIn } from "../../../auth";
+import { cookies } from "next/headers";
+import { getCsrfToken } from "next-auth/react";
+import { auth, signIn } from "../../../auth";
 import { AuthError } from "next-auth";
 import { UserForm } from "./form/Form";
 import { redirect } from "next/navigation";
 
-export default async function handleLoginServer(data: UserForm) {
+export async function handleLoginServer(data: UserForm) {
     const email = data.email
     const password = data.password
     try {
@@ -18,5 +19,40 @@ export default async function handleLoginServer(data: UserForm) {
                 throw err
             }
         }
+    }
+}
+
+export async function handleGithubServer() {
+    try {
+        await signIn("github")
+    } catch (err) {
+        if (err instanceof AuthError) {
+            if (err.type === 'CredentialsSignin') {
+                err.message = 'Credenciais fornecidas não encontradas'
+                throw err
+            }
+        }
+    }
+}
+
+export async function handleGoogleServer() {
+    try {
+        await signIn("google")
+    } catch (err) {
+        if (err instanceof AuthError) {
+            if (err.type === 'CredentialsSignin') {
+                err.message = 'Credenciais fornecidas não encontradas'
+                throw err
+            }
+        }
+    }
+}
+
+export async function isAuthenticated() {
+    const session = await auth()
+    if (session) {
+        return true
+    } else {
+        return false
     }
 }

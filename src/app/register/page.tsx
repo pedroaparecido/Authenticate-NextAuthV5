@@ -13,7 +13,7 @@ export default function Register() {
     return(
         <>
             <Navbar />
-            <div className="flex h-[88vh] flex-col items-center justify-center">
+            <div className="flex h-[81vh] flex-col items-center justify-center">
                 <Card>
                     Register Page
                     <Form />

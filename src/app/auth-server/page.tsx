@@ -14,7 +14,7 @@ export default function AuthServer() {
     return(
         <>
         <Navbar />
-            <div className="flex h-[88vh] flex-col items-center justify-center">
+            <div className="flex h-[81vh] flex-col items-center justify-center">
                 <Card>
                     Auth Server
                     <Form />

@@ -1,9 +1,15 @@
 import NextAuth from "next-auth"
 import credentials from "next-auth/providers/credentials"
-import GithubProvider from "next-auth/providers/github"
+import GitHub from "next-auth/providers/github"
+import type { NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import db from "./lib/db"
 import { compareSync } from 'bcrypt-ts'
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+import authConfig from "./auth.config"
+
+const prisma = new PrismaClient
 
 export const {
     handlers: { GET, POST },
@@ -11,8 +17,14 @@ export const {
     signIn,
     signOut
 } = NextAuth({
+    adapter: PrismaAdapter(prisma),
+    session: {
+        strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60,  
+        ...authConfig
+    },
     providers: [
-        GithubProvider({
+        GitHub({
         clientId: process.env.GITHUB_ID,
         clientSecret: process.env.GITHUB_SECRET,
         }),
@@ -47,4 +59,5 @@ export const {
             }
         })
   ],
-})
+  } satisfies NextAuthConfig
+)

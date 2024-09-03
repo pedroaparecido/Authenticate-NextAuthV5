@@ -1,6 +1,4 @@
 'use server'
-import { cookies } from "next/headers";
-import { getCsrfToken } from "next-auth/react";
 import { auth, signIn } from "../../../auth";
 import { AuthError } from "next-auth";
 import { UserForm } from "./form/Form";
@@ -23,16 +21,7 @@ export async function handleLoginServer(data: UserForm) {
 }
 
 export async function handleGithubServer() {
-    try {
-        await signIn("github")
-    } catch (err) {
-        if (err instanceof AuthError) {
-            if (err.type === 'CredentialsSignin') {
-                err.message = 'Credenciais fornecidas não encontradas'
-                throw err
-            }
-        }
-    }
+    await signIn("github")
 }
 
 export async function handleGoogleServer() {

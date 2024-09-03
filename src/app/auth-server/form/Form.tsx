@@ -16,7 +16,8 @@ export default function Form() {
     }
 
     const handleGithub = async () => {
-        await handleGithubServer()
+        const ses = handleGithubServer()
+        console.log(ses)
     }
 
     return(
@@ -26,9 +27,9 @@ export default function Form() {
                 <input className="p-[10px] outline-none rounded-xl bg-stone-400 text-white shadow-xl" type="password" {...register('password')} />
                 <button className="p-[20px] bg-neutral-500 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl">Entrar</button>
             </form>
-            <form action={handleGithubServer}>
-                <button className="p-[20px] bg-neutral-500 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl">Github</button>
-            </form>
+            
+                <button onClick={() => handleGithubServer()} className="p-[20px] bg-neutral-500 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl">Github</button>
+            
             <form action={handleGoogleServer}>
                 <button className="p-[20px] bg-neutral-500 text-white rounded-2xl mt-[10px] w-[230px] shadow-xl">Google</button>
             </form>

@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import { MemoryRouter } from "react-router-dom";
 import { SessionProvider } from "next-auth/react";
-import NextAuthProvider from "./provider";
 import { auth } from "../../../auth";
 
 const inter = Inter({ subsets: ["latin"] });

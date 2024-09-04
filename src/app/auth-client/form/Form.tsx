@@ -1,7 +1,7 @@
 import { AuthError } from "next-auth"
 import { FieldValues, useForm } from "react-hook-form"
 import { signIn } from "../../../../auth"
-import { handleGithubClient, handleLoginClient } from "./login-client"
+import { handleGithubClient, handleGoogleClient, handleLoginClient } from "./login-client"
 
 
 export interface UserForm {
@@ -22,7 +22,7 @@ export default function Form() {
     }
 
     const handleGoogle = async () => {
-        signIn('google', { redirect: true, callbackUrl: '/logout' })
+        await handleGoogleClient()
     }
 
     return(

@@ -29,16 +29,7 @@ export async function handleGithubClient() {
 }
 
 export async function handleGoogleClient() {
-    try {
         await signIn("google")
-    } catch (err) {
-        if (err instanceof AuthError) {
-            if (err.type === 'CredentialsSignin') {
-                err.message = 'Credenciais fornecidas não encontradas'
-                throw err
-            }
-        }
-    }
 }
 
 export async function isAuthenticated() {

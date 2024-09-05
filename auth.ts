@@ -5,20 +5,7 @@ import type { NextAuthConfig } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import db from "./lib/db"
 import { compareSync } from 'bcrypt-ts'
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
 import authConfig from "./auth.config"
-import { Auth } from "@auth/core"
-import GitHub from "@auth/core/providers/github"
-
-export default async function handleGithub() {
-  const request = new Request('http://localhost:3000/api/auth/')
-  return await Auth(request, {
-    providers: [
-      GitHub({ clientId: process.env.GITHUB_ID, clientSecret: process.env.GITHUB_SECRET }),
-    ],
-  })
-}
 
 export const {
     handlers: { GET, POST },
@@ -35,10 +22,12 @@ export const {
         GitHubProvider({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
+            allowDangerousEmailAccountLinking: true
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET
+            clientSecret: process.env.GOOGLE_SECRET,
+            allowDangerousEmailAccountLinking: true
         }),
         credentials({
             credentials: {
@@ -67,6 +56,7 @@ export const {
             }
         })
   ],
-  secret: process.env.NEXT_SECRET
+  secret: process.env.NEXT_SECRET,
+  basePath: process.env.NEXTAUTH_URL
   } satisfies NextAuthConfig
 )

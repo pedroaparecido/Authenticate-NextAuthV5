@@ -16,8 +16,7 @@ export default function Form() {
     }
 
     const handleGithub = async () => {
-        const ses = handleGithubServer()
-        console.log(ses)
+        handleGithubServer()
     }
 
     return(

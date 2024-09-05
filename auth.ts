@@ -57,6 +57,5 @@ export const {
         })
   ],
   secret: process.env.NEXT_SECRET,
-  basePath: process.env.NEXTAUTH_URL
   } satisfies NextAuthConfig
 )

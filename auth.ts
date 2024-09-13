@@ -6,6 +6,18 @@ import GoogleProvider from "next-auth/providers/google"
 import db from "./lib/db"
 import { compareSync } from 'bcrypt-ts'
 import authConfig from "./auth.config"
+import { UnstorageAdapter } from '@auth/unstorage-adapter'
+import { redis } from "./lib/redis"
+import { createStorage } from "unstorage"
+import redisDriver from 'unstorage/drivers/redis'
+
+const storage = createStorage({
+    driver: redisDriver({
+        host: 'localhost',
+        tls: false as any,
+        port: 6379
+    })
+})
 
 export const {
     handlers: { GET, POST },
@@ -13,6 +25,7 @@ export const {
     signIn,
     signOut
 } = NextAuth({
+    adapter: UnstorageAdapter(storage),
     session: {
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60,  
@@ -46,11 +59,16 @@ export const {
                     }
                 })
 
-                if (!user) return null
-
+                if (!user) {
+                    return null
+                }
+                
                 const comparePass = compareSync(password, user.password as string)
                 
-                if (comparePass) return { id: user.id, email: user.email, user: user.name }
+                if (comparePass) {
+                    await redis.set(`${user.id}`, JSON.stringify(user))
+                    return { id: user.id, email: user.email, user: user.name }
+                }
 
                 return null
             }

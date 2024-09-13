@@ -10,8 +10,7 @@ export default function ButtonCard(session: any) {
                 <Button><Link href="/">Home</Link></Button>
             </div>
             <div className="flex flex-row bg-slate-400 border-solid border-slate-400 p-[10px] border-8 w-[400px] justify-center gap-[30px] text-white">
-                <Button><Link href="/auth-client">Auth (Client)</Link></Button>
-                <Button><Link href="/auth-server">Auth (Server)</Link></Button>
+                <Button><Link href="/auth-server">Auth & OAuth</Link></Button>
             </div>
             <div className="flex flex-row bg-slate-400 border-solid border-slate-400 p-[10px] border-8 w-[400px] justify-center text-white">
                 <Button><Link href="/register">Register</Link></Button>

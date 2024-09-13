@@ -16,7 +16,7 @@ export default function AuthServer() {
         <Navbar />
             <div className="flex h-[81vh] flex-col items-center justify-center">
                 <Card>
-                    Auth Server
+                    Auth & OAuth
                     <Form />
                 </Card>
             </div>

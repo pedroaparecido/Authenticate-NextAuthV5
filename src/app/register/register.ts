@@ -1,9 +1,9 @@
 'use server'
-
 import { redirect } from "next/navigation"
 import db from "../../../lib/db"
 import { UserForm } from "./form/Form"
 import { hashSync } from "bcrypt-ts"
+import { redis } from "../../../util/Redis"
 
 
 export default async function handleRegister(data: UserForm) {
@@ -20,12 +20,14 @@ export default async function handleRegister(data: UserForm) {
     
     const hash = hashSync(data.password)
 
-    await db.user.create({
+    const newUser = await db.user.create({
         data: {
             email: data.email,
             password: hash,
         }
     })
 
-    redirect('/auth-client')
+    await redis.set('user',JSON.stringify(newUser))
+
+    redirect('/logout')
 }

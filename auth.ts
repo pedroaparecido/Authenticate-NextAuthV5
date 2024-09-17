@@ -7,7 +7,7 @@ import db from "./lib/db"
 import { compareSync } from 'bcrypt-ts'
 import authConfig from "./auth.config"
 import { UnstorageAdapter } from '@auth/unstorage-adapter'
-import { redis } from "./lib/redis"
+import { redis } from "./util/Redis"
 import { createStorage } from "unstorage"
 import redisDriver from 'unstorage/drivers/redis'
 

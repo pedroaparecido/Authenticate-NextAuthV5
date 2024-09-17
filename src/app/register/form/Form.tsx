@@ -1,4 +1,3 @@
-'use client'
 import { FieldValues, useForm } from "react-hook-form"
 import handleRegister from "../register"
 

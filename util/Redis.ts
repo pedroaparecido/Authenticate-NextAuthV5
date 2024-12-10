@@ -1,14 +1,7 @@
 import { Redis } from 'ioredis'
 
-const getRedisUrl = () => {
-    if (process.env.REDIS_URL) {
-        return process.env.REDIS_URL
-    }
 
-    throw new Error('REDIS_URLS não foi definida')
-}
-
-export const redis = new Redis(getRedisUrl(),{
+export const redis = new Redis("rediss://default:AVViAAIjcDE5Zjc5NmUyMDE5NDU0OWFhOTNjNjg3NTk3NTNmNjhkNXAxMA@classic-kid-21858.upstash.io:6379",{
     host: '127.0.0.1',
     port: 6379,
 })
